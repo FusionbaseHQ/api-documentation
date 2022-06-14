@@ -90,7 +90,7 @@ data_service.pretty_request_definition()
 # Invoke a service by providing input data
 
 # The following lines of code are equivalent
-# Services can be invokes directly by their parameter names
+# Services can be invoked directly by their parameter names
 result = data_service.invoke(address_string="Agnes-Pockels-Bogen 1, 80992 München")
 
 
