@@ -145,8 +145,7 @@ from fusionbase.Fusionbase import Fusionbase
 
 # Create a new dataservice
 # Provide your API Key and the Fusionbase API URI (usually: https://api.fusionbase.com/api/v1)
-fusionbase = Fusionbase(auth={"api_key": "*** SECRET CREDENTIALS ***"},
-                      connection={"base_uri": "https://api.fusionbase.com/api/v1"})
+fusionbase = Fusionbase(auth={"api_key": "*** SECRET CREDENTIALS ***"})
 
 data_service_key = "23622632"
 data_service = fusionbase.get_dataservice(data_service_key)
