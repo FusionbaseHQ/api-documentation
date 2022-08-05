@@ -5,7 +5,7 @@ The Data Stream API lets you conveniently access data and metadata of all Data S
 {% hint style="info" %}
 You can access almost any available Data Stream even if you are not subscribed to it!
 
-The API provides all functions but is limited to a maximum of 10 records per stream.
+The API provides most functions but is limited to a maximum of 10 records per stream.
 {% endhint %}
 
 ## TL;DR <a href="#tldr" id="tldr"></a>
