@@ -4,52 +4,202 @@ description: >-
   but also to a large number of intelligent data services.
 ---
 
-# Data Services
+# Services
 
-A data service can be seen as an API that returns a certain output for a specific input. \
-For example, our [address normalization service](https://app.fusionbase.com/share/25127186) parses an address and returns the structured and normalized parts of it.
+Our Data Service API functions as an interface that delivers specific outputs in response to defined inputs. It is designed to streamline the process of retrieving targeted data efficiently and accurately.
+
+**Example:** [**Web Context Service for Organizations**](https://fusionbase.com/en/data/service/50527318/Company%20Internet%20Context)
+
+**Functionality:** The Web Context Service for Organizations is a specialized feature of our Data Service API. It is engineered to collect and return comprehensive, publicly available information about various companies.
+
+**How It Works:**
+
+* **Input:** You provide the name or identifier of a company.
+* **Process:** The service searches through an extensive database of public records and digital resources.
+* **Output:** It returns a detailed compilation of information about the specified company. This may include company size, location, industry, public financial records, and other relevant organizational data.
+
+**Use Case:** This service is particularly useful for market researchers, financial analysts, and business development professionals who need quick and reliable access to company profiles and industry data.
+
+
 
 {% hint style="info" %}
 All services work the exact same way - No need to learn and adapt to a tonne of different API services and documentations.
 {% endhint %}
 
 There is only a single endpoint to access services through Fusionbase:\
-[https://api.fusionbase.com/api/v1/data-service/invoke](https://api.fusionbase.com/api/v1/data-service/invoke)
+[https://api.fusionbase.com/api/v2](https://api.fusionbase.com/api/v1/data-service/invoke)[/service/invoke](https://api.fusionbase.com/api/v2/service/invoke)
 
-{% swagger method="post" path="invoke" baseUrl="https://api.fusionbase.com/api/v1/data-service/" summary="Invoke data service" %}
+{% swagger method="post" path="invoke" baseUrl="https://api.fusionbase.com/api/v2/service/" summary="Invoke data service" %}
 {% swagger-description %}
-Takes the service specific input values and returns the result of the service. 
+Takes the service specific input values and returns the result of the service.&#x20;
 {% endswagger-description %}
 
-{% swagger-parameter in="body" name="data_service_key" type="String" required="true" %}
+{% swagger-parameter in="body" name="service_key" type="String" required="true" %}
 The service ID as specified on the service's API page.
 {% endswagger-parameter %}
 
-{% swagger-parameter in="body" name="inputs" type="List" %}
-Service input parameter name and value pairs as list of dictionary.
+{% swagger-parameter in="body" name="inputs" type="Object" %}
+A json object containing the key (input parameter name) and value pairs to invoke the data service.
 {% endswagger-parameter %}
 {% endswagger %}
 
 #### Example
 
-All services are used in the exact same way. Let's take the [address normalization service](https://app.fusionbase.com/share/25127186) as an example on how to use them via the API.
+All services are used in the exact same way. Let's take the [**Web Context Service for Organizations**](https://fusionbase.com/en/data/service/50527318/Company%20Internet%20Context) as an example on how to use them via the API.
 
-![Fusionbase Address Normalization Service UI](<../.gitbook/assets/Bildschirmfoto 2021-12-17 um 15.58.17.png>)
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-As we can see, the address normalizer takes a single input value which is named `address_string` . The service has the ID `23622632`
+The Company Web Context Service is designed to retrieve and compile comprehensive internet-based information about specific companies.
 
-A curl request to invoke the service with the input _Agnes-Pockels-Bogen 1, 80992 München_ for the __ `address_string` __ would look like the following:
+**Key Features:**
 
+* **Input Parameters:** The service requires two input values: `company_name` and `zip_code`.
+* **Service ID:** This service is identified by the ID `50527318`.
+
+**Example Usage:** To invoke this service for "OroraTech GmbH" located in the zip code area "81669", a POST request can be made as follows:
+
+
+
+{% tabs %}
+{% tab title="cURL" %}
 ```bash
-curl -X "POST" "https://api.fusionbase.com/api/v1/data-service/invoke" \
+curl -X "POST" "https://api.fusionbase.com/api/v2/service/invoke" \
 -H 'X-API-KEY: YOUR_API_KEY' \
 -H 'Content-Type: application/json; charset=utf-8' \
 -d $'{
-"inputs": [
-{
-	"name": "address_string", # THIS IS THE NAME OF THE INPUT VALUE
-	"value": "Agnes-Pockels-Bogen 1, 80992 München" # THE VALUE FOR THE INPUT
-}],
-"data_service_key": "23622632" # THE ID OF THE SERVICE
+"inputs": {
+    "company_name": "OroraTech GmbH",
+    "zip_code": "81669"
+},
+"service_key": "50527318" # THE ID OF THE SERVICE
 }'
 ```
+{% endtab %}
+
+{% tab title="Python" %}
+```python
+import requests
+import json
+
+url = "https://api.fusionbase.com/api/v2/service/invoke"
+headers = {
+    "X-API-KEY": "YOUR_API_KEY",
+    "Content-Type": "application/json; charset=utf-8"
+}
+payload = {
+    "inputs": {
+        "company_name": "OroraTech GmbH",
+        "zip_code": "81669"
+    },
+    "service_key": "50527318"
+}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+print(response.text)
+
+```
+{% endtab %}
+
+{% tab title="NodeJS" %}
+```javascript
+const axios = require('axios');
+
+const url = "https://api.fusionbase.com/api/v2/service/invoke";
+const headers = {
+    "X-API-KEY": "YOUR_API_KEY",
+    "Content-Type": "application/json; charset=utf-8"
+};
+const payload = {
+    inputs: {
+        company_name: "OroraTech GmbH",
+        zip_code: "81669"
+    },
+    service_key: "50527318"
+};
+
+axios.post(url, payload, { headers: headers })
+    .then(response => console.log(response.data))
+    .catch(error => console.error('Error:', error));
+
+```
+{% endtab %}
+
+{% tab title="Java" %}
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://api.fusionbase.com/api/v2/service/invoke");
+            String jsonInputString = "{\"inputs\": {\"company_name\": \"OroraTech GmbH\", \"zip_code\": \"81669\"}, \"service_key\": \"50527318\"}";
+            byte[] postData = jsonInputString.getBytes(StandardCharsets.UTF_8);
+
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("X-API-KEY", "YOUR_API_KEY");
+            con.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            con.setDoOutput(true);
+
+            try(OutputStream os = con.getOutputStream()) {
+                os.write(postData, 0, postData.length);
+            }
+
+            int responseCode = con.getResponseCode();
+            System.out.println("POST Response Code : " + responseCode);
+            // Handle response...
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+{% endtab %}
+
+{% tab title="Go" %}
+```go
+package main
+
+import (
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    url := "https://api.fusionbase.com/api/v2/service/invoke"
+    payload := map[string]interface{}{
+        "inputs": map[string]string{
+            "company_name": "OroraTech GmbH",
+            "zip_code": "81669",
+        },
+        "service_key": "50527318",
+    }
+    jsonPayload, _ := json.Marshal(payload)
+
+    client := &http.Client{}
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonPayload))
+    req.Header.Add("X-API-KEY", "YOUR_API_KEY")
+    req.Header.Add("Content-Type", "application/json; charset=utf-8")
+
+    resp, err := client.Do(req)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    defer resp.Body.Close()
+    
+    // Read response
+    fmt.Println("Response status:", resp.Status)
+}
+
+
+```
+{% endtab %}
+{% endtabs %}

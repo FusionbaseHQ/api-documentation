@@ -9,7 +9,7 @@ You can view and manage your API keys at the [profile settings](https://app.fusi
 {% hint style="info" %}
 The base URL for all API requests is
 
-[**https://api.fusionbase.com/api/v1**](https://api.fusionbase.com/api/v1) ****&#x20;
+**https://api.fusionbase.com/api/v2**&#x20;
 {% endhint %}
 
 ## Retrieving a Data Stream
@@ -44,21 +44,11 @@ The column names for which the Data Stream should be sorted by.
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="sort_order" %}
-The order how the Data Stream should be sorted. This is either 
-
-`desc`
-
- or 
-
-`asc`
-
-.
+The order how the Data Stream should be sorted. This is either `desc` or `asc`.
 {% endswagger-parameter %}
 
 {% swagger-parameter in="query" name="compressed_file" type="Bool" %}
-Indicates wether to generated a gezipped compressed file or not. Default is 
-
-`false`
+Indicates wether to generated a gezipped compressed file or not. Default is `false`
 {% endswagger-parameter %}
 
 {% swagger-response status="200: OK" description="" %}

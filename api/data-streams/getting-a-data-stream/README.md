@@ -1,60 +1,54 @@
-# Getting a Data Stream
+# Getting a Stream
 
-To get a Data Stream we need to compose a request URI and send it via an authenticated `GET`request to the Fusionbase API. Each successful request returns the data, as well as, the metadata of a Data Stream.
-
-{% hint style="warning" %}
-If you don't have access to the Data Stream, you'll only get 10 records of the data
-{% endhint %}
-
-If we just want to get the data without any special queries, we can just copy the Endpoint URI provided in the Fusionbase App as shown in the screenshot below:
-
-![Data Stream URI](../../../.gitbook/assets/screenshot\_api\_data\_stream.png)
-
-## Basic Request
-
-By default, the Data Stream API endpoint URL looks as follows:
-
-```url
-https://api.fusionbase.com/api/v1/data-stream/get/403398?skip=0&limit=10&sort_keys=fb_datetime&sort_order=desc
-```
-
-### URL Components <a href="#uri-components" id="uri-components"></a>
-
-The URL consists of four parts:
-
-* The base URL `https://api.fusionbase.com/api/`
-* The API version `/v1/` (current version is 1)
-* The data stream resource `/data-stream/get/[DATA_STREAM_ID]`
-* The query parameters `?[QUERY_PARAMETERS]`
-
-A sample request to the stated URL will return the Data Stream with the ID `403398`, skipping `0`records, limiting the returned records to `10` and sort the result by `fb_datetime` in descending order.
-
-## Parameters
-
-The API implements different filter and query parameters to tailor the result set to your needs. All basic query operations are supported.
+The Fusionbase API provides streamlined access to data streams, offering specialized endpoints for retrieving metadata, querying data, and conducting string searches within the data. Access to these features is achieved through authenticated GET requests.
 
 {% hint style="info" %}
-All query parameters can be arbitrarily combined in a single request!
+The base URL is always\
+https://api.fusionbase.com
 {% endhint %}
 
-The following retrieval parameters are currently available:
+#### Endpoints
 
-{% content-ref url="pagination.md" %}
-[pagination.md](pagination.md)
-{% endcontent-ref %}
+1. **Metadata Retrieval**
+   * Endpoint: `/api/v2/stream/base/{STREAM_ID}`
+   * Purpose: Retrieves metadata for data streams.
+2. **Data Retrieval and Querying**
+   * Endpoint: `/api/v2/stream/data/{STREAM_ID}`
+   * Purpose: Retrieves and queries data from a specified data stream.
+3. **String Search within Data**
+   * Endpoint: `/api/v2/stream/data/search/{STREAM_ID}`
+   * Purpose: Performs string searches within a specified data stream.
 
-{% content-ref url="sorting.md" %}
-[sorting.md](sorting.md)
-{% endcontent-ref %}
+#### Basic Request Structure
 
-{% content-ref url="filter-queries.md" %}
-[filter-queries.md](filter-queries.md)
-{% endcontent-ref %}
+To retrieve data from a stream without specific queries, the API endpoint URL is structured as follows:
 
-{% content-ref url="projections.md" %}
-[projections.md](projections.md)
-{% endcontent-ref %}
+```
+/api/v2/stream/data/{STREAM_ID}?skip=0&limit=10&sort_keys=fb_datetime&sort_order=desc
+```
 
-{% content-ref url="downloading.md" %}
-[downloading.md](downloading.md)
-{% endcontent-ref %}
+#### URL Components
+
+The URL is composed of the following elements:
+
+* **Base URL**: `{{base_api_url}}/api/`
+* **Resource Path**: This varies based on the operation, such as `/stream/base`, `/stream/data/{STREAM_ID}`, or `/stream/data/search/{STREAM_ID}`.
+* **Query Parameters**: `?[QUERY_PARAMETERS]`, used for specifying details like pagination, sorting, and filtering.
+
+#### Example
+
+A typical request to retrieve data from a stream looks like this:
+
+```
+/api/v2/stream/data/403398?skip=0&limit=10&sort_keys=fb_datetime&sort_order=desc
+```
+
+This request fetches data from the stream with ID 403398, skipping 0 records, limiting to 10 records, and sorting the results by `fb_datetime` in descending order.
+
+{% hint style="warning" %}
+Limited access to a Data Stream may result in receiving only a restricted number of records, such as 10 records.
+{% endhint %}
+
+#### Query Parameters
+
+The API supports a variety of filter and query parameters to customize the result set according to user requirements. These parameters include options for basic query operations and can be combined in a single request for comprehensive data retrieval.

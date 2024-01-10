@@ -1,5 +1,9 @@
 # Python
 
+{% hint style="warning" %}
+Please be aware that the Python SDK is undergoing significant updates in preparation for its first major release. This upcoming version will introduce breaking changes. We advise caution when using the current version of the SDK, as future updates may require adjustments in your existing code.
+{% endhint %}
+
 ### Installation in Python - PyPI release
 
 Fusionbase is on PyPI, so you can use `pip` to install it.
@@ -55,7 +59,7 @@ data_stream_key = "28654971"
 data_stream = fusionbase.get_datastream(data_stream_key)
 ```
 
-****
+
 
 **Human readable datastream information**
 
@@ -64,7 +68,7 @@ data_stream = fusionbase.get_datastream(data_stream_key)
 data_stream.pretty_meta_data()
 ```
 
-****
+
 
 **Getting the data**
 
@@ -94,7 +98,7 @@ print(data)
 
 ```
 
-****
+
 
 **Get Data as a** [**pandas**](https://pandas.pydata.org/) **DataFrame**
 
