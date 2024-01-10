@@ -151,7 +151,7 @@ from fusionbase.Fusionbase import Fusionbase
 # Provide your API Key and the Fusionbase API URI (usually: https://api.fusionbase.com/api/v1)
 fusionbase = Fusionbase(auth={"api_key": "*** SECRET CREDENTIALS ***"})
 
-data_service_key = "23622632"
+data_service_key = "50527318"
 data_service = fusionbase.get_dataservice(data_service_key)
 ```
 
@@ -176,17 +176,7 @@ data_service.pretty_request_definition()
 
 # The following lines of code are equivalent
 # Services can be invoked directly by their parameter names
-result = data_service.invoke(address_string="Agnes-Pockels-Bogen 1, 80992 München")
-
-
-# Or using a list of parameter key and value pairs
-payload = [
-    {
-        "name": "address_string",  # THIS IS THE NAME OF THE INPUT VALUE
-        "value": "Agnes-Pockels-Bogen 1, 80992 München"  # THE VALUE FOR THE INPUT
-    }
-]
-result = data_service.invoke(parameters=payload)
+result = data_service.invoke(company_name="OroraTech GmbH", zip_code="81669")
 
 print(result)
 ```
