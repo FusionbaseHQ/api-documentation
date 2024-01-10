@@ -6,7 +6,7 @@ Welcome to the Fusionbase Public API, your gateway to programmatically accessing
 
 #### Discovering Data Streams
 
-Visit the [Fusionbase Data ](https://chat.openai.com/#data-catalog-link)Hub to browse through the datasets. Here you can:
+Visit the [Fusionbase Data](https://fusionbase.com) Hub to browse through the datasets. Here you can:
 
 * **Search** for topics that interest you.
 * **Preview** data to understand its structure and contents.
@@ -22,7 +22,7 @@ Take your time to explore. Once you find the data that aligns with your goals, n
 
 To start using the API:
 
-1. Obtain your API key from the [API Keys Management](https://chat.openai.com/#api-keys-management-link) page in your Fusionbase account.
+1. Obtain your API key from the [API Keys Management](https://fusionbase.com/en/account/user/api-keys) page in your Fusionbase account.
 2. Use the `X-API-KEY` header to authenticate your API requests.
 
 #### Base URL for API Requests
