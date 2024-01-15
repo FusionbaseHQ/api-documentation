@@ -7,7 +7,7 @@ description: >-
 
 # Projections
 
-{% swagger method="get" path="/{STREAM_ID}?format=json&query_parameters={ "project_fields": ["FIELD_NAME"]}" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Projections" %}
+{% swagger expanded="true" method="get" path="/{STREAM_ID}?format=json&query_parameters={ "project_fields": ["FIELD_NAME"]}" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Projections" %}
 {% swagger-description %}
 If you are only interested in a subset of columns in a Data Stream you can project them. Therefore, the result set does not contain any additional columns. Specifically, in cases when the Data Stream has a large number of columns, this can significantly speed up the retrieval performance.
 {% endswagger-description %}

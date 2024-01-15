@@ -14,6 +14,11 @@
     * [Projections](api/data-streams/getting-a-data-stream/projections.md)
     * [Data Versions](api/data-streams/getting-a-data-stream/integrating-fusionbase.md)
 * [Services](api/data-services.md)
+* [Search](api/search/README.md)
+  * [(All in One) Fusion Search](api/search/all-in-one-fusion-search.md)
+  * [Streams & Services](api/search/streams-and-services.md)
+  * [Location Search and Geocoding](api/search/location-search-and-geocoding.md)
+* [Entities](api/entities.md)
 
 ## Fusionbase SDK <a href="#developer-sdk" id="developer-sdk"></a>
 

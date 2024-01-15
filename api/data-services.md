@@ -29,7 +29,7 @@ All services work the exact same way - No need to learn and adapt to a tonne of 
 There is only a single endpoint to access services through Fusionbase:\
 [https://api.fusionbase.com/api/v2](https://api.fusionbase.com/api/v1/data-service/invoke)[/service/invoke](https://api.fusionbase.com/api/v2/service/invoke)
 
-{% swagger method="post" path="invoke" baseUrl="https://api.fusionbase.com/api/v2/service/" summary="Invoke data service" %}
+{% swagger method="post" path="invoke" baseUrl="https://api.fusionbase.com/api/v2/service/" summary="Invoke data service" expanded="true" %}
 {% swagger-description %}
 Takes the service specific input values and returns the result of the service.&#x20;
 {% endswagger-description %}

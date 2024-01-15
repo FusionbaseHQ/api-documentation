@@ -7,7 +7,7 @@ description: >-
 
 # Pagination
 
-{% swagger method="get" path="/{STREAM_ID}?skip=0&limit=2&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Pagination" %}
+{% swagger method="get" path="/{STREAM_ID}?skip=0&limit=2&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Pagination" expanded="true" %}
 {% swagger-description %}
 Some Data Streams are too large to get all the records via the API in a single call. In such cases the API lets you paginate the results via the `skip` and `limit`parameters.
 {% endswagger-description %}

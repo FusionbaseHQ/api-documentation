@@ -7,7 +7,7 @@ description: >-
 
 # Filter Queries
 
-{% swagger method="get" path="/{STREAM_ID]?query_parameters={"filters": [{"property": "construction_year_end", "operator": "GREATER_THAN", "value": 2013}]}&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Filter the data stream" %}
+{% swagger method="get" path="/{STREAM_ID]?query_parameters={"filters": [{"property": "construction_year_end", "operator": "GREATER_THAN", "value": 2013}]}&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Filter the data stream" expanded="true" %}
 {% swagger-description %}
 The actual values of a Data Stream can be queried and filtered using the `filters`parameter in `query_parameters`. This allows for the selection of a subset of the data based on the records values.
 {% endswagger-description %}

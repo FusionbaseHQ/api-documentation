@@ -6,7 +6,7 @@ description: >-
 
 # Sorting
 
-{% swagger method="get" path="/{STREAM_ID}?query_parameters={"sort_order": ["asc"], "sort_keys": ["fb_datetime"]}&format=json" baseUrl="https://api.fusionbase.comapi/v2/stream/data" summary="Sorting" %}
+{% swagger method="get" path="/{STREAM_ID}?query_parameters={"sort_order": ["asc"], "sort_keys": ["fb_datetime"]}&format=json" baseUrl="https://api.fusionbase.comapi/v2/stream/data" summary="Sorting" expanded="true" %}
 {% swagger-description %}
 The Data Stream can be sorted by any column in ascending or descending order. Sorting by multiple columns at once is also possible.
 {% endswagger-description %}
