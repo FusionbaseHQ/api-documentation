@@ -9,6 +9,10 @@ Let's assume a Data Stream is updated five times a day and you decide to pull th
 Get the data of a given Data stream since a specified version
 {% endswagger-description %}
 
+{% swagger-parameter in="query" name="format" %}
+json or msgpack
+{% endswagger-parameter %}
+
 {% swagger-parameter in="path" name="STREAM_ID" required="true" %}
 The ID of the Data Stream
 {% endswagger-parameter %}
@@ -16,6 +20,10 @@ The ID of the Data Stream
 {% swagger-parameter in="query" name="version_boundary" %}
 A string or a pair of comma-separated strings representing version IDs.
 {% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="" %}
+
+{% endswagger-response %}
 {% endswagger %}
 
 #### Request Structure

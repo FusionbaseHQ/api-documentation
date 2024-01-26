@@ -23,7 +23,7 @@ Our Data Service API functions as an interface that delivers specific outputs in
 
 
 {% hint style="info" %}
-All services work the exact same way - No need to learn and adapt to a tonne of different API services and documentations.
+All services work the exact same way - No need to learn and adapt to a lot of different API services and documentations.
 {% endhint %}
 
 There is only a single endpoint to access services through Fusionbase:\
@@ -39,8 +39,12 @@ The service ID as specified on the service's API page.
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="inputs" type="Object" %}
-A json object containing the key (input parameter name) and value pairs to invoke the data service.
+JSON object containing the key (input parameter name) and value pairs to invoke the data service.
 {% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="" %}
+
+{% endswagger-response %}
 {% endswagger %}
 
 #### Example

@@ -12,13 +12,21 @@ description: >-
 If you are only interested in a subset of columns in a Data Stream you can project them. Therefore, the result set does not contain any additional columns. Specifically, in cases when the Data Stream has a large number of columns, this can significantly speed up the retrieval performance.
 {% endswagger-description %}
 
-{% swagger-parameter in="query" name="query_parameters" type="List" %}
-The name of the projected column, i.e., the fields that should exist in the result set
+{% swagger-parameter in="query" name="format" %}
+json or msgpack
 {% endswagger-parameter %}
 
-{% swagger-parameter in="path" name="SREAM_ID" %}
+{% swagger-parameter in="query" name="query_parameters" type="List" %}
+The name of the projected columns, i.e. the fields that should exist in the result set
+{% endswagger-parameter %}
+
+{% swagger-parameter in="path" name="STREAM_ID" %}
 The ID of the Data Stream
 {% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="" %}
+
+{% endswagger-response %}
 {% endswagger %}
 
 #### Request Structure

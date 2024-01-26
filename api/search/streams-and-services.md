@@ -8,7 +8,7 @@ The Streams & Services Search Endpoint is a specialized API endpoint designed to
 
 
 
-{% swagger method="get" path="/data?q=<QUERY>" baseUrl="https://app.fusionbase.com/api/v2/search" summary="Data Search" expanded="true" %}
+{% swagger method="get" path="/data?q=<QUERY>" baseUrl="https://api.fusionbase.com/api/v2/search" summary="Data Search" expanded="true" %}
 {% swagger-description %}
 
 {% endswagger-description %}

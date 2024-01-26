@@ -16,7 +16,7 @@ The actual values of a Data Stream can be queried and filtered using the `filter
 json or msgpack
 {% endswagger-parameter %}
 
-{% swagger-parameter in="path" name="STREM_ID" required="true" %}
+{% swagger-parameter in="path" name="STREAM_ID" required="true" %}
 The ID of the Data Stream
 {% endswagger-parameter %}
 
