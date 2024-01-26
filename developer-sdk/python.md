@@ -155,21 +155,21 @@ data_service_key = "50527318"
 data_service = fusionbase.get_dataservice(data_service_key)
 ```
 
-**Human readable dataservice information:**
+**Human readable data service information:**
 
 ```python
 # Retrieves the metadata from a Service by giving a Service specific key and prints it nicely to console
 data_service.pretty_meta_data()
 ```
 
-**Human readable dataservice definition:**
+**Human readable data service definition:**
 
 ```python
 # Retrieve the request definition (such as required parameters) from a Service by giving a Service specific key and print it to console.
 data_service.pretty_request_definition()
 ```
 
-**Invoke a dataservice:**
+**Invoke a data service:**
 
 ```python
 # Invoke a service by providing input data
