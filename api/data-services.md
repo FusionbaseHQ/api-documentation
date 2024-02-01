@@ -14,9 +14,9 @@ Our Data Service API functions as an interface that delivers specific outputs in
 
 **How It Works:**
 
-* **Input:** You provide the name or identifier of a company.
+* **Input:** You provide the base data of an organization.
 * **Process:** The service searches through an extensive database of public records and digital resources.
-* **Output:** It returns a detailed compilation of information about the specified company. This may include company size, location, industry, public financial records, and other relevant organizational data.
+* **Output:** It returns a detailed compilation of information about the specified company. This may include company size, location, industry, and other relevant organizational data.
 
 **Use Case:** This service is particularly useful for market researchers, financial analysts, and business development professionals who need quick and reliable access to company profiles and industry data.
 
