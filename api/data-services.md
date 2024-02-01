@@ -49,7 +49,7 @@ JSON object containing the key (input parameter name) and value pairs to invoke 
 
 #### Example
 
-All services are used in the exact same way. Let's take the [**Web Context Service for Organizations**](https://fusionbase.com/en/data/service/50527318/Company%20Internet%20Context) as an example on how to use them via the API.
+All services are used in the exact same way. Let's take the [**Web Context Service for Organizations**](https://fusionbase.com/de/data/service/4658603456/Entity%20Web%20Context) as an example on how to use them via the API.
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Entity Web Context - Data Service</p></figcaption></figure>
 
