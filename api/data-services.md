@@ -8,7 +8,7 @@ description: >-
 
 Our Data Service API functions as an interface that delivers specific outputs in response to defined inputs. It is designed to streamline the process of retrieving targeted data efficiently and accurately.
 
-**Example:** [**Web Context Service for Organizations**](https://fusionbase.com/en/data/service/50527318/Company%20Internet%20Context)
+**Example:** [**Web Context Service for Organizations**](https://fusionbase.com/de/data/service/4658603456/Entity%20Web%20Context)
 
 **Functionality:** The Web Context Service for Organizations is a specialized feature of our Data Service API. It is engineered to collect and return comprehensive, publicly available information about various companies.
 
@@ -51,14 +51,14 @@ JSON object containing the key (input parameter name) and value pairs to invoke 
 
 All services are used in the exact same way. Let's take the [**Web Context Service for Organizations**](https://fusionbase.com/en/data/service/50527318/Company%20Internet%20Context) as an example on how to use them via the API.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Entity Web Context - Data Service</p></figcaption></figure>
 
 The Company Web Context Service is designed to retrieve and compile comprehensive internet-based information about specific companies.
 
 **Key Features:**
 
-* **Input Parameters:** The service requires two input values: `company_name` and `zip_code`.
-* **Service ID:** This service is identified by the ID `50527318`.
+* **Input Parameters:** The service requires four input values: `entity_name`, `postal_code`, `street` and `city`
+* **Service ID:** This service is identified by the ID `4658603456`.
 
 **Example Usage:** To invoke this service for "OroraTech GmbH" located in the zip code area "81669", a POST request can be made as follows:
 
@@ -73,9 +73,11 @@ curl -X "POST" "https://api.fusionbase.com/api/v2/service/invoke" \
 -d $'{
 "inputs": {
     "company_name": "OroraTech GmbH",
-    "zip_code": "81669"
+    "postal_code": "81669",
+    "street": "St. Martin Straße 112",
+    "city": "München"
 },
-"service_key": "50527318" # THE ID OF THE SERVICE
+"service_key": "4658603456" # THE ID OF THE SERVICE
 }'
 ```
 {% endtab %}
@@ -92,10 +94,12 @@ headers = {
 }
 payload = {
     "inputs": {
-        "company_name": "OroraTech GmbH",
-        "zip_code": "81669"
+       "company_name": "OroraTech GmbH",
+       "postal_code": "81669",
+       "street": "St. Martin Straße 112",
+       "city": "München"
     },
-    "service_key": "50527318"
+    "service_key": "4658603456"
 }
 
 response = requests.post(url, headers=headers, data=json.dumps(payload))
@@ -115,10 +119,12 @@ const headers = {
 };
 const payload = {
     inputs: {
-        company_name: "OroraTech GmbH",
-        zip_code: "81669"
+       company_name: "OroraTech GmbH",
+       postal_code: "81669",
+       street: "St. Martin Straße 112",
+       city: "München"
     },
-    service_key: "50527318"
+    service_key: "4658603456"
 };
 
 axios.post(url, payload, { headers: headers })
@@ -139,7 +145,12 @@ public class Main {
     public static void main(String[] args) {
         try {
             URL url = new URL("https://api.fusionbase.com/api/v2/service/invoke");
-            String jsonInputString = "{\"inputs\": {\"company_name\": \"OroraTech GmbH\", \"zip_code\": \"81669\"}, \"service_key\": \"50527318\"}";
+            String jsonInputString = "{\"inputs\": {"
+                + "\"company_name\": \"OroraTech GmbH\", "
+                + "\"postal_code\": \"81669\", "
+                + "\"street\": \"St. Martin Straße 112\", "
+                + "\"city\": \"München\"}, "
+                + "\"service_key\": \"4658603456\"}";
             byte[] postData = jsonInputString.getBytes(StandardCharsets.UTF_8);
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -181,9 +192,11 @@ func main() {
     payload := map[string]interface{}{
         "inputs": map[string]string{
             "company_name": "OroraTech GmbH",
-            "zip_code": "81669",
+            "postal_code": "81669",
+            "street": "St. Martin Straße 112",
+            "city": "München"
         },
-        "service_key": "50527318",
+        "service_key": "4658603456",
     }
     jsonPayload, _ := json.Marshal(payload)
 
