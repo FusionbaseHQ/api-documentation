@@ -18,7 +18,12 @@
   * [(All in One) Fusion Search](api/search/all-in-one-fusion-search.md)
   * [Streams & Services](api/search/streams-and-services.md)
   * [Location Search and Geocoding](api/search/location-search-and-geocoding.md)
-* [Entities](api/entities.md)
+* [Entities](api/entities/README.md)
+  * [Organizations](api/entities/organizations.md)
+  * [Person](api/entities/person.md)
+  * [Location](api/entities/location.md)
+  * [Event](api/entities/event.md)
+* [AI Completions](api/ai-completions.md)
 
 ## Fusionbase SDK <a href="#developer-sdk" id="developer-sdk"></a>
 
