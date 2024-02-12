@@ -1,3 +1,9 @@
+---
+description: >-
+  Map the web of connections – Fusionbase's Relations Endpoint unveils the
+  intricate network of relationships between entities and data features.
+---
+
 # Relations
 
 The Relations Endpoint is a powerful feature of Fusionbase API, designed to resolve and map the complex web of relationships between various entities and data features. This endpoint is particularly useful for understanding the network of connections surrounding an entity, be it a person or an organization. It is an invaluable tool for applications focusing on network analysis, relationship mapping, and comprehensive data linkage.
