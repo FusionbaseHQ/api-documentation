@@ -18,7 +18,6 @@ This parameter accepts the user's search string, defining the specific data or i
 {% swagger-response status="200: OK" description="" %}
 The Fusion Search API response primarily consists of a `results` section, categorizing matched entities like organizations, persons, and streams with detailed information. When applicable, a `knowledge_graph` is included, offering direct answers to the query, and a `ranks` list details the relevance order of entity types.
 
-````json
 ```json
 {
     "knowledge_graph": {
@@ -411,7 +410,6 @@ The Fusion Search API response primarily consists of a `results` section, catego
     ]
 }
 ```
-````
 
 
 {% endswagger-response %}
