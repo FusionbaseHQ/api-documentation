@@ -29,23 +29,24 @@ All services work the exact same way - No need to learn and adapt to a lot of di
 There is only a single endpoint to access services through Fusionbase:\
 [https://api.fusionbase.com/api/v2](https://api.fusionbase.com/api/v1/data-service/invoke)[/service/invoke](https://api.fusionbase.com/api/v2/service/invoke)
 
-{% swagger method="post" path="invoke" baseUrl="https://api.fusionbase.com/api/v2/service/" summary="Invoke data service" expanded="true" %}
-{% swagger-description %}
+## Invoke data service
+
+<mark style="color:green;">`POST`</mark> `https://api.fusionbase.com/api/v2/service/invoke`
+
 Takes the service specific input values and returns the result of the service.&#x20;
-{% endswagger-description %}
 
-{% swagger-parameter in="body" name="service_key" type="String" required="true" %}
-The service ID as specified on the service's API page.
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="inputs" type="Object" %}
-JSON object containing the key (input parameter name) and value pairs to invoke the data service.
-{% endswagger-parameter %}
+| Name                                           | Type   | Description                                                                                       |
+| ---------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------- |
+| service\_key<mark style="color:red;">\*</mark> | String | The service ID as specified on the service's API page.                                            |
+| inputs                                         | Object | JSON object containing the key (input parameter name) and value pairs to invoke the data service. |
 
-{% swagger-response status="200: OK" description="" %}
+{% tabs %}
+{% tab title="200: OK " %}
 
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 #### Example
 
@@ -72,7 +73,7 @@ curl -X "POST" "https://api.fusionbase.com/api/v2/service/invoke" \
 -H 'Content-Type: application/json; charset=utf-8' \
 -d $'{
 "inputs": {
-    "company_name": "OroraTech GmbH",
+    "entity_name": "OroraTech GmbH",
     "postal_code": "81669",
     "street": "St. Martin Straße 112",
     "city": "München"
@@ -94,7 +95,7 @@ headers = {
 }
 payload = {
     "inputs": {
-       "company_name": "OroraTech GmbH",
+       "entity_name": "OroraTech GmbH",
        "postal_code": "81669",
        "street": "St. Martin Straße 112",
        "city": "München"
@@ -119,7 +120,7 @@ const headers = {
 };
 const payload = {
     inputs: {
-       company_name: "OroraTech GmbH",
+       entity_name: "OroraTech GmbH",
        postal_code: "81669",
        street: "St. Martin Straße 112",
        city: "München"
@@ -146,7 +147,7 @@ public class Main {
         try {
             URL url = new URL("https://api.fusionbase.com/api/v2/service/invoke");
             String jsonInputString = "{\"inputs\": {"
-                + "\"company_name\": \"OroraTech GmbH\", "
+                + "\"entity_name\": \"OroraTech GmbH\", "
                 + "\"postal_code\": \"81669\", "
                 + "\"street\": \"St. Martin Straße 112\", "
                 + "\"city\": \"München\"}, "
@@ -191,7 +192,7 @@ func main() {
     url := "https://api.fusionbase.com/api/v2/service/invoke"
     payload := map[string]interface{}{
         "inputs": map[string]string{
-            "company_name": "OroraTech GmbH",
+            "entity_name": "OroraTech GmbH",
             "postal_code": "81669",
             "street": "St. Martin Straße 112",
             "city": "München"
