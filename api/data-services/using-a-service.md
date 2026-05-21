@@ -1,10 +1,4 @@
----
-description: >-
-  Fusionbase not only provides stream access to a large number of data sources
-  but also to a large number of intelligent data services.
----
-
-# Services
+# Using a Service
 
 Our Data Service API functions as an interface that delivers specific outputs in response to defined inputs. It is designed to streamline the process of retrieving targeted data efficiently and accurately.
 
@@ -52,7 +46,7 @@ Takes the service specific input values and returns the result of the service.&#
 
 All services are used in the exact same way. Let's take the [**Web Context Service for Organizations**](https://fusionbase.com/de/data/service/4658603456/Entity%20Web%20Context) as an example on how to use them via the API.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Entity Web Context - Data Service</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Entity Web Context - Data Service</p></figcaption></figure>
 
 The Company Web Context Service is designed to retrieve and compile comprehensive internet-based information about specific companies.
 
@@ -221,3 +215,4 @@ func main() {
 ```
 {% endtab %}
 {% endtabs %}
+

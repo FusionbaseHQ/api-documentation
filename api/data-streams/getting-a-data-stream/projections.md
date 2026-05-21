@@ -7,27 +7,30 @@ description: >-
 
 # Projections
 
-{% swagger expanded="true" method="get" path="/{STREAM_ID}?format=json&query_parameters={ "project_fields": ["FIELD_NAME"]}" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Projections" %}
-{% swagger-description %}
+## Projections
+
+<mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/stream/data/{STREAM_ID}?format=json&query_parameters={ "project_fields": ["FIELD_NAME"]}`
+
 If you are only interested in a subset of columns in a Data Stream you can project them. Therefore, the result set does not contain any additional columns. Specifically, in cases when the Data Stream has a large number of columns, this can significantly speed up the retrieval performance.
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="format" %}
-json or msgpack
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="query" name="query_parameters" type="List" %}
-The name of the projected columns, i.e. the fields that should exist in the result set
-{% endswagger-parameter %}
+| Name       | Type   | Description               |
+| ---------- | ------ | ------------------------- |
+| STREAM\_ID | String | The ID of the Data Stream |
 
-{% swagger-parameter in="path" name="STREAM_ID" %}
-The ID of the Data Stream
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200: OK" description="" %}
+| Name              | Type   | Description                                                                            |
+| ----------------- | ------ | -------------------------------------------------------------------------------------- |
+| query\_parameters | List   | The name of the projected columns, i.e. the fields that should exist in the result set |
+| format            | String | json or msgpack                                                                        |
 
-{% endswagger-response %}
-{% endswagger %}
+{% tabs %}
+{% tab title="200: OK " %}
+
+{% endtab %}
+{% endtabs %}
 
 #### Request Structure
 

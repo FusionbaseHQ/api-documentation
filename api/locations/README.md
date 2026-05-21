@@ -1,8 +1,10 @@
 ---
-description: Location entities offer precise and structured geographical information
+description: >-
+  Address-aware queries — geocoding, risk profiles, neighbourhood demographics,
+  and the businesses nearby.
 ---
 
-# Location
+# Locations
 
 The `/api/v2/entities/location/get/{FB_ENTITY_ID}` endpoint in the Fusionbase API provides structured information about specific locations. This endpoint is crucial for accessing detailed and structured data about locations using their unique Fusionbase Entity ID (FB\_ENTITY\_ID).
 

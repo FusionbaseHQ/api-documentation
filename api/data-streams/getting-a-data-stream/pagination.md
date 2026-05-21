@@ -7,28 +7,28 @@ description: >-
 
 # Pagination
 
-{% swagger method="get" path="/{STREAM_ID}?skip=0&limit=2&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Pagination" expanded="true" %}
-{% swagger-description %}
+## Pagination
+
+<mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/stream/data/{STREAM_ID}?skip=0&limit=2&format=json`
+
 Some Data Streams are too large to get all the records via the API in a single call. In such cases the API lets you paginate the results via the `skip` and `limit`parameters.
-{% endswagger-description %}
 
-{% swagger-parameter in="path" name="STREAM_ID" required="true" %}
-The ID of the Data Stream
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="query" name="limit" type="Integer" %}
-Indicates the number of records that are retrieved in the result set.
-{% endswagger-parameter %}
+| Name                                         | Type   | Description               |
+| -------------------------------------------- | ------ | ------------------------- |
+| STREAM\_ID<mark style="color:red;">\*</mark> | String | The ID of the Data Stream |
 
-{% swagger-parameter in="query" name="skip" type="Integer" %}
-Indicates the number of records that should be skipped from the beginning of the Data Stream.
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="format" type="String" %}
+| Name   | Type    | Description                                                                                   |
+| ------ | ------- | --------------------------------------------------------------------------------------------- |
+| skip   | Integer | Indicates the number of records that should be skipped from the beginning of the Data Stream. |
+| limit  | Integer | Indicates the number of records that are retrieved in the result set.                         |
+| format | String  |                                                                                               |
 
-{% endswagger-parameter %}
-
-{% swagger-response status="200: OK" description="" %}
+{% tabs %}
+{% tab title="200: OK " %}
 This is a sample data response, the response is always a list of dicts. If format is not explicitly specified, the default response format is msgpack.
 
 ```json
@@ -77,8 +77,8 @@ This is a sample data response, the response is always a list of dicts. If forma
 ```
 
 
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 #### Understanding `skip` and `limit` Parameters
 
@@ -102,4 +102,4 @@ So, the resulting dataset retrieved with these parameters will be:
 
 `[11,12,13,14,15,16,17,18,19,20]`
 
-These parameters are particularly useful in scenarios where you need to handle large volumes of data, allowing for efficient data access and reducing the load on both the server and client sides.\
+These parameters are particularly useful in scenarios where you need to handle large volumes of data, allowing for efficient data access and reducing the load on both the server and client sides.<br>

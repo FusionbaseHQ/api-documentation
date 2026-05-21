@@ -4,27 +4,30 @@ The Fusionbase API offers a sophisticated mechanism for retrieving entries based
 
 Let's assume a Data Stream is updated five times a day and you decide to pull the data just once a day. To get all of the newly added records from your local version up to the most recent version of the Data Stream, simply use the delta endpoint.
 
-{% swagger baseUrl="https://api.fusionbase.com/api/v2/stream/data" method="get" path="/{STREAM_ID}?version_boundary={FB_DATA_VERSION}&format=json" summary="Get records from a certain version" expanded="true" %}
-{% swagger-description %}
+## Get records from a certain version
+
+<mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/stream/data/{STREAM_ID}?version_boundary={FB_DATA_VERSION}&format=json`
+
 Get the data of a given Data stream since a specified version
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="format" %}
-json or msgpack
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="path" name="STREAM_ID" required="true" %}
-The ID of the Data Stream
-{% endswagger-parameter %}
+| Name                                         | Type   | Description               |
+| -------------------------------------------- | ------ | ------------------------- |
+| STREAM\_ID<mark style="color:red;">\*</mark> | String | The ID of the Data Stream |
 
-{% swagger-parameter in="query" name="version_boundary" %}
-A string or a pair of comma-separated strings representing version IDs.
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200: OK" description="" %}
+| Name              | Type   | Description                                                             |
+| ----------------- | ------ | ----------------------------------------------------------------------- |
+| version\_boundary | String | A string or a pair of comma-separated strings representing version IDs. |
+| format            | String | json or msgpack                                                         |
 
-{% endswagger-response %}
-{% endswagger %}
+{% tabs %}
+{% tab title="200: OK " %}
+
+{% endtab %}
+{% endtabs %}
 
 #### Request Structure
 

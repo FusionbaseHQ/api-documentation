@@ -2,22 +2,24 @@
 description: Efficient, Targeted Data and Service Discovery
 ---
 
-# Streams & Services
+# Search
 
-The Streams & Services Search Endpoint is a specialized API endpoint designed to streamline searches specifically for Data Streams and Data Services within the Fusionbase Data Hub. It efficiently narrows down results to these two categories, delivering precise data sets and related services. Perfect for developers who need to target their search for datasets, like statistics or environmental data, and services that complement data processing and analytics, providing a focused and detailed data selection.
+The Streams & Services Search Endpoint is a specialized API endpoint designed to streamline searches specifically for Datasets, formerly called streams, and Data Services within the Fusionbase Data Hub. It efficiently narrows down results to these two categories, delivering precise data sets and related services. Perfect for developers who need to target their search for datasets, like statistics or environmental data, and services that complement data processing and analytics, providing a focused and detailed data selection.
 
 
 
-{% swagger method="get" path="/data?q=<QUERY>" baseUrl="https://api.fusionbase.com/api/v2/search" summary="Data Search" expanded="true" %}
-{% swagger-description %}
+## Data Search
 
-{% endswagger-description %}
+<mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/search/data?q=<QUERY>`
 
-{% swagger-parameter in="query" name="q" type="String" %}
-This parameter accepts the user's search string, defining the specific data or information to be retrieved by the Data Search Endpoint.
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200: OK" description="Search response" %}
+| Name | Type   | Description                                                                                                                             |
+| ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| q    | String | This parameter accepts the user's search string, defining the specific data or information to be retrieved by the Data Search Endpoint. |
+
+{% tabs %}
+{% tab title="200: OK Search response" %}
 ```json
 {
     "results": [
@@ -79,8 +81,8 @@ This parameter accepts the user's search string, defining the specific data or i
 ]
 
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 To assist with integrating the Streams & Services Search API into your application, we provide examples in various programming languages. Each example illustrates how to execute a properly encoded GET request to the API. Remember to replace `<QUERY>` with your URL-encoded search query and `YOUR_API_KEY` with the actual API key provided to you.
 

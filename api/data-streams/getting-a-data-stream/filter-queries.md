@@ -7,24 +7,27 @@ description: >-
 
 # Filter Queries
 
-{% swagger method="get" path="/{STREAM_ID]?query_parameters={"filters": [{"property": "construction_year_end", "operator": "GREATER_THAN", "value": 2013}]}&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Filter the data stream" expanded="true" %}
-{% swagger-description %}
+## Filter the data stream
+
+<mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/stream/data/{STREAM_ID]?query_parameters={"filters": [{"property": "construction_year_end", "operator": "GREATER_THAN", "value": 2013}]}&format=json`
+
 The actual values of a Data Stream can be queried and filtered using the `filters`parameter in `query_parameters`. This allows for the selection of a subset of the data based on the records values.
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="format" type="String" %}
-json or msgpack
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="path" name="STREAM_ID" required="true" %}
-The ID of the Data Stream
-{% endswagger-parameter %}
+| Name                                         | Type   | Description               |
+| -------------------------------------------- | ------ | ------------------------- |
+| STREAM\_ID<mark style="color:red;">\*</mark> | String | The ID of the Data Stream |
 
-{% swagger-parameter in="query" name="query_parameters" type="Object" %}
-URI encoded JSON string
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200: OK" description="" %}
+| Name              | Type   | Description             |
+| ----------------- | ------ | ----------------------- |
+| query\_parameters | Object | URI encoded JSON string |
+| format            | String | json or msgpack         |
+
+{% tabs %}
+{% tab title="200: OK " %}
 This is a sample response for a specific stream:
 
 ```python
@@ -71,8 +74,8 @@ This is a sample response for a specific stream:
         }
 ]
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 The Fusionbase API offers a powerful filtering capability to refine and narrow down the data retrieved from a data stream. This is achieved using the `filters` parameter within the `query_parameters` in your request.
 

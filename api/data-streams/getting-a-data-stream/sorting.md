@@ -6,24 +6,27 @@ description: >-
 
 # Sorting
 
-{% swagger method="get" path="/{STREAM_ID}?query_parameters={"sort_order": ["asc"], "sort_keys": ["fb_datetime"]}&format=json" baseUrl="https://api.fusionbase.com/api/v2/stream/data" summary="Sorting" expanded="true" %}
-{% swagger-description %}
+## Sorting
+
+<mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/stream/data/{STREAM_ID}?query_parameters={"sort_order": ["asc"], "sort_keys": ["fb_datetime"]}&format=json`
+
 The Data Stream can be sorted by any column in ascending or descending order. Sorting by multiple columns at once is also possible.
-{% endswagger-description %}
 
-{% swagger-parameter in="path" name="STREAM_ID" %}
-The ID of the Data Stream
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="query" name="format" type="String" %}
-json or msgpack
-{% endswagger-parameter %}
+| Name       | Type   | Description               |
+| ---------- | ------ | ------------------------- |
+| STREAM\_ID | String | The ID of the Data Stream |
 
-{% swagger-parameter in="query" type="Object" name="query_parameters" %}
-URI encoded JSON string
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200: OK" description="" %}
+| Name              | Type   | Description             |
+| ----------------- | ------ | ----------------------- |
+| query\_parameters | Object | URI encoded JSON string |
+| format            | String | json or msgpack         |
+
+{% tabs %}
+{% tab title="200: OK " %}
 This is a sample response for a specific stream:
 
 ```python
@@ -70,8 +73,8 @@ This is a sample response for a specific stream:
         }
 ]
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 ### Overview
 
