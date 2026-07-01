@@ -8,17 +8,17 @@ description: >-
 
 The `/api/v2/entities/location/get/{FB_ENTITY_ID}` endpoint in the Fusionbase API provides structured information about specific locations. This endpoint is crucial for accessing detailed and structured data about locations using their unique Fusionbase Entity ID (FB\_ENTITY\_ID).
 
-### Request Header
+#### Request Header
 
 * **X-API-KEY**: Your Fusionbase API key. This key authenticates your access to the API.
 * **Content-Type**: application/json. This header specifies the format of the request.
 
-### Request Structure
+#### Request Structure
 
 * Access this endpoint via a GET request to `https://api.fusionbase.com/api/v2/entities/location/get/{FB_ENTITY_ID}`.
 * Replace `{FB_ENTITY_ID}` with the actual Fusionbase Entity ID of the location you wish to query.
 
-### Request Samples
+#### Request Samples
 
 {% tabs %}
 {% tab title="Python" %}
@@ -27,7 +27,7 @@ import requests
 
 url = "https://api.fusionbase.com/api/v2/entities/location/get/FB_ENTITY_ID"
 headers = {
-    "X-API-KEY": "<YOUR API KEY>",
+    "X-API-KEY": "YOUR_API_KEY",
     "Content-Type": "application/json"
 }
 
@@ -42,7 +42,7 @@ const axios = require('axios');
 
 const url = "https://api.fusionbase.com/api/v2/entities/location/get/FB_ENTITY_ID";
 const headers = {
-    "X-API-KEY": "<YOUR API KEY>",
+    "X-API-KEY": "YOUR_API_KEY",
     "Content-Type": "application/json"
 };
 
@@ -69,7 +69,7 @@ public class Main {
         String url = "https://api.fusionbase.com/api/v2/entities/location/get/FB_ENTITY_ID";
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .header("X-API-KEY", "<YOUR API KEY>")
+                .header("X-API-KEY", "YOUR_API_KEY")
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
@@ -97,7 +97,7 @@ func main() {
     url := "https://api.fusionbase.com/api/v2/entities/location/get/FB_ENTITY_ID"
     req, _ := http.NewRequest("GET", url, nil)
 
-    req.Header.Add("X-API-KEY", "<YOUR API KEY>")
+    req.Header.Add("X-API-KEY", "YOUR_API_KEY")
     req.Header.Add("Content-Type", "application/json")
 
     res, _ := http.DefaultClient.Do(req)
@@ -111,7 +111,7 @@ func main() {
 {% endtab %}
 {% endtabs %}
 
-### Response Structure
+#### Response Structure
 
 The response is a JSON object containing various details about the location:
 
@@ -128,7 +128,7 @@ The response is a JSON object containing various details about the location:
 * **fb\_semantic\_id**: A semantic identifier providing a structured representation of the location's key attributes.
 * **formatted\_address**: A human-readable address format.
 
-### Response Sample
+#### Response Sample
 
 ```json
 {
@@ -170,10 +170,10 @@ The response is a JSON object containing various details about the location:
 }
 ```
 
-#### Error Handling
+**Error Handling**
 
 The API uses standard HTTP response codes. Errors are indicated with 4xx (client errors) and 5xx (server errors), each accompanied by a message detailing the issue.
 
-#### Notes
+**Notes**
 
 * Keep the API key confidential.

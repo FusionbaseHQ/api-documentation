@@ -14,38 +14,40 @@ POST https://api.fusionbase.com/api/v2/relation/resolve/<RELATION_ID>/<ENTITY_ID
 
 ***
 
-### Authentication
+#### Authentication
 
 ```http
-X-API-KEY: <YOUR_API_KEY>
+X-API-KEY: YOUR_API_KEY
 ```
 
 ***
 
-### Path parameters
+#### Path parameters
 
 | Parameter       | Required | Description                                                                                                                            |
 | --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `<RELATION_ID>` | yes      | Stable identifier of the relation type. See Available person relations below for the full catalog.                                     |
 | `<ENTITY_ID>`   | yes      | The Fusionbase entity ID of the person. Get it from the Person Search endpoint — it's the `fb_entity_id` field on every search result. |
 
-#### Optional relation parameters
+**Optional relation parameters**
 
-Some relations accept additional parameters. Send them as a JSON object in the **request body**, with `Content-Type: application/json`:
+Some relations accept additional parameters. Send them **nested inside a top-level `params` object** in the **request body**, with `Content-Type: application/json`:
 
 ```http
 POST /api/v2/relation/resolve/<RELATION_ID>/<ENTITY_ID>
-X-API-KEY: <YOUR_API_KEY>
+X-API-KEY: YOUR_API_KEY
 Content-Type: application/json
 
-{ /* relation-specific params */ }
+{
+  "params": { /* relation-specific params */ }
+}
 ```
 
-When a relation takes no parameters, the body can be omitted (or an empty `{}`). Each relation's API Playground in the Data Hub lists the parameters it accepts.
+When a relation takes no parameters, the body can be omitted (or sent as an empty `{}` / `{"params": {}}`). Each relation's API Playground in the Data Hub lists the parameters it accepts.
 
 ***
 
-### Available person relations
+#### Available person relations
 
 Relation IDs are stable; the slugs in any example URLs are display-only and may be localized.
 
@@ -56,25 +58,25 @@ Relation IDs are stable; the slugs in any example URLs are display-only and may 
 
 ***
 
-### Example requests
+#### Example requests
 
 Fetch the **History** relation for Timotheus Höttges (`fb_entity_id = 29db47808ed652004d14aaf9bdaea6d3`):
 
 ```bash
 curl -X POST 'https://api.fusionbase.com/api/v2/relation/resolve/5990434853/29db47808ed652004d14aaf9bdaea6d3' \
-  -H 'X-API-KEY: <YOUR_API_KEY>'
+  -H 'X-API-KEY: YOUR_API_KEY'
 ```
 
 Walk the **Network** graph for the same person:
 
 ```bash
 curl -X POST 'https://api.fusionbase.com/api/v2/relation/resolve/2545866067/29db47808ed652004d14aaf9bdaea6d3' \
-  -H 'X-API-KEY: <YOUR_API_KEY>'
+  -H 'X-API-KEY: YOUR_API_KEY'
 ```
 
 ***
 
-### Response
+#### Response
 
 All relation endpoints return the same envelope. The shape of `entity.value` varies per relation — see each relation's API Playground in the Data Hub for its exact schema.
 
@@ -121,7 +123,7 @@ All relation endpoints return the same envelope. The shape of `entity.value` var
 ]
 ```
 
-#### Envelope fields
+**Envelope fields**
 
 | Field                   | Description                                                                                           |
 | ----------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -132,14 +134,14 @@ All relation endpoints return the same envelope. The shape of `entity.value` var
 | `entity.fb_semantic_id` | Stable identifier for the feature instance (typically `feature\|<subtype>\|person:<id>`).             |
 | `entity.value`          | The actual payload. Shape depends on the relation; see the per-relation schema in the API Playground. |
 
-#### Payload shapes
+**Payload shapes**
 
 * **History** (`5990434853`) — list of publication / role records, each carrying the linked organization, role label, and date range. Use this to reconstruct a person's complete public career timeline.
 * **Network** (`2545866067`) — `value.root` + `value.links[]` with `depth`, `relation_id`, `label`, `entity_from`, `entity_to`, `meta`. Walks outward from the queried person to organizations and onward to other people sharing those organizations.
 
 ***
 
-### Tips
+#### Tips
 
 * **Cache by relation × entity.** Each `(relation_id, fb_entity_id)` pair is cacheable on the client. Use the `fb_semantic_id` from the response as a stable cache key.
 * **Pair with Person Search.** Search first to resolve `fb_entity_id`, then fan out to the relations you need.

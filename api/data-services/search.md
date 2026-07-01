@@ -6,17 +6,33 @@ description: Efficient, Targeted Data and Service Discovery
 
 The Streams & Services Search Endpoint is a specialized API endpoint designed to streamline searches specifically for Datasets, formerly called streams, and Data Services within the Fusionbase Data Hub. It efficiently narrows down results to these two categories, delivering precise data sets and related services. Perfect for developers who need to target their search for datasets, like statistics or environmental data, and services that complement data processing and analytics, providing a focused and detailed data selection.
 
-
-
-## Data Search
+### Data Search
 
 <mark style="color:blue;">`GET`</mark> `https://api.fusionbase.com/api/v2/search/data?q=<QUERY>`
 
-#### Query Parameters
+**Query Parameters**
 
-| Name | Type   | Description                                                                                                                             |
-| ---- | ------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| q    | String | This parameter accepts the user's search string, defining the specific data or information to be retrieved by the Data Search Endpoint. |
+| Name                    | Type                | Default | Description                                                                                                                                                                                     |
+| ----------------------- | ------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| q                       | String              | —       | The user's search string, defining the specific data or information to be retrieved.                                                                                                            |
+| limit                   | Integer             | `20`    | Maximum number of results **per category**. Streams and services are limited independently, so with both categories enabled a request can return up to `2 × limit` results.                     |
+| skip                    | Integer             | `0`     | Pagination offset — number of results to skip.                                                                                                                                                  |
+| include\_streams        | Boolean             | `true`  | Whether to include datasets (streams) in the results. **Set to `false` to return data services only.**                                                                                          |
+| include\_services       | Boolean             | `true`  | Whether to include data services in the results.                                                                                                                                                |
+| iso\_alpha\_3\_coverage | String (JSON array) | —       | Restrict results to entries whose geographical coverage includes the given ISO alpha-3 country code(s). Must be a **URL-encoded JSON array**, e.g. `["DEU"]`. A bare value such as `DEU` fails. |
+
+By default `/api/v2/search/data` returns both data services (`entity_type: "SERVICE"`) and datasets (`entity_type: "STREAM"`). To search data services only, pass `include_streams=false`.
+
+**Services-only example (cURL):**
+
+```bash
+curl -G 'https://api.fusionbase.com/api/v2/search/data' \
+  -H 'X-API-KEY: YOUR_API_KEY' \
+  --data-urlencode 'q=address normalization' \
+  --data-urlencode 'limit=10' \
+  --data-urlencode 'skip=0' \
+  --data-urlencode 'include_streams=false'
+```
 
 {% tabs %}
 {% tab title="200: OK Search response" %}
@@ -77,9 +93,8 @@ The Streams & Services Search Endpoint is a specialized API endpoint designed to
             "distance": 0.31545883417129517,
             "entity_type": "STREAM"
         }
-    }
-]
-
+    ]
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -136,7 +151,7 @@ axios.get(url, { headers })
 {% endtab %}
 
 {% tab title="Java" %}
-```javascript
+```java
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.BufferedReader;

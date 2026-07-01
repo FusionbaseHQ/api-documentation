@@ -16,45 +16,47 @@ POST https://api.fusionbase.com/api/v2/relation/resolve/<RELATION_ID>/<ENTITY_ID
 
 ***
 
-### Authentication
+#### Authentication
 
 ```http
-X-API-KEY: <YOUR_API_KEY>
+X-API-KEY: YOUR_API_KEY
 ```
 
 ***
 
-### Path parameters
+#### Path parameters
 
 | Parameter       | Required | Description                                                                                                                                        |
 | --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `<RELATION_ID>` | yes      | Stable identifier of the relation type. See Available organization relations below for the full catalog.                                           |
 | `<ENTITY_ID>`   | yes      | The Fusionbase entity ID of the organization. Get it from the Organization Search endpoint — it's the `fb_entity_id` field on every search result. |
 
-#### Optional relation parameters
+**Optional relation parameters**
 
-Some relations accept additional parameters (for example, **Financial Reports** can be narrowed to a specific fiscal year and document type). Send them as a JSON object in the **request body**, with `Content-Type: application/json`:
+Some relations accept additional parameters (for example, **Financial Reports** can be narrowed to a specific fiscal year and document type). Send them **nested inside a top-level `params` object** in the **request body**, with `Content-Type: application/json`:
 
 ```http
 POST /api/v2/relation/resolve/6322183029/110fe0da2f84c8d3174ec7bfd1f0f15a
-X-API-KEY: <YOUR_API_KEY>
+X-API-KEY: YOUR_API_KEY
 Content-Type: application/json
 
 {
-  "reference_year": "2023",
-  "document_type": "Jahresabschluss"
+  "params": {
+    "reference_year": "2023",
+    "document_type": "Jahresabschluss"
+  }
 }
 ```
 
-When a relation takes no parameters, the body can be omitted (or an empty `{}`). Each relation's API Playground in the Data Hub lists the parameters it accepts.
+When a relation takes no parameters, the body can be omitted (or sent as an empty `{}` / `{"params": {}}`). Each relation's API Playground in the Data Hub lists the parameters it accepts.
 
 ***
 
-### Available organization relations
+#### Available organization relations
 
 Each row links to the same slice you see on an organization's detail page. Relation IDs are stable; the slugs in the example URLs are display-only and may be localized.
 
-#### People & network
+**People & network**
 
 | Relation                            | ID           | Description                                                                                                 |
 | ----------------------------------- | ------------ | ----------------------------------------------------------------------------------------------------------- |
@@ -64,16 +66,16 @@ Each row links to the same slice you see on an organization's detail page. Relat
 | **Shareholdings**                   | `9136475649` | The organizations this company holds stakes in.                                                             |
 | **Ultimate Beneficial Owner (UBO)** | `9136468925` | UBOs disclosed under the German Transparenzregister regime.                                                 |
 
-#### Financials
+**Financials**
 
-| Relation                       | ID           | Description                                                                                                                                                                                    |
-| ------------------------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Financial KPIs**             | `5601746763` | Headline financial metrics (revenue, net income, total assets, employees) per fiscal year.                                                                                                     |
-| **Balance Sheets**             | `5601746108` | Itemised balance sheet accounts per fiscal year.                                                                                                                                               |
-| **Profit and Loss Statements** | `5601734199` | Itemised P\&L per fiscal year, hierarchical (`children` carry nested line items).                                                                                                              |
-| **Financial Reports**          | `6322183029` | Full Bundesanzeiger filings — Jahresabschluss / Konzernabschluss. Sanitised HTML body plus metadata. Accepts a body of `{"reference_year":"…","document_type":"…"}` to pick a specific filing. |
+| Relation                       | ID           | Description                                                                                                                                                                                               |
+| ------------------------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Financial KPIs**             | `5601746763` | Headline financial metrics (revenue, net income, total assets, employees) per fiscal year.                                                                                                                |
+| **Balance Sheets**             | `5601746108` | Itemised balance sheet accounts per fiscal year.                                                                                                                                                          |
+| **Profit and Loss Statements** | `5601734199` | Itemised P\&L per fiscal year, hierarchical (`children` carry nested line items).                                                                                                                         |
+| **Financial Reports**          | `6322183029` | Full Bundesanzeiger filings — Jahresabschluss / Konzernabschluss. Sanitised HTML body plus metadata. Accepts a body of `{"params":{"reference_year":"…","document_type":"…"}}` to pick a specific filing. |
 
-#### Public records
+**Public records**
 
 | Relation                          | ID           | Description                                                                  |
 | --------------------------------- | ------------ | ---------------------------------------------------------------------------- |
@@ -82,7 +84,7 @@ Each row links to the same slice you see on an organization's detail page. Relat
 | **Commercial Register Documents** | `6391320624` | Downloadable register documents (Handelsregister-Auszüge etc.).              |
 | **News & Media**                  | `5162071547` | News mentions and media coverage tied to the organization.                   |
 
-#### Discovery
+**Discovery**
 
 | Relation             | ID           | Description                                                                                     |
 | -------------------- | ------------ | ----------------------------------------------------------------------------------------------- |
@@ -90,34 +92,34 @@ Each row links to the same slice you see on an organization's detail page. Relat
 
 ***
 
-### Example requests
+#### Example requests
 
 Fetch the **Management** relation for ADOS GmbH (`fb_entity_id = 75e8887e25587ed64cc8e1733a6c7160`):
 
 ```bash
 curl -X POST 'https://api.fusionbase.com/api/v2/relation/resolve/5906082026/75e8887e25587ed64cc8e1733a6c7160' \
-  -H 'X-API-KEY: <YOUR_API_KEY>'
+  -H 'X-API-KEY: YOUR_API_KEY'
 ```
 
-Fetch the **Financial Reports** relation for a specific fiscal year + document type:
+Fetch the **Financial Reports** relation for a specific fiscal year + document type (note the `params` wrapper):
 
 ```bash
 curl -X POST 'https://api.fusionbase.com/api/v2/relation/resolve/6322183029/110fe0da2f84c8d3174ec7bfd1f0f15a' \
-  -H 'X-API-KEY: <YOUR_API_KEY>' \
+  -H 'X-API-KEY: YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
-  -d '{"reference_year":"2023","document_type":"Jahresabschluss"}'
+  -d '{"params":{"reference_year":"2023","document_type":"Jahresabschluss"}}'
 ```
 
 Walk the **Network** graph for the same company:
 
 ```bash
 curl -X POST 'https://api.fusionbase.com/api/v2/relation/resolve/3138484719/75e8887e25587ed64cc8e1733a6c7160' \
-  -H 'X-API-KEY: <YOUR_API_KEY>'
+  -H 'X-API-KEY: YOUR_API_KEY'
 ```
 
 ***
 
-### Response
+#### Response
 
 All relation endpoints return the same envelope. The shape of `entity.value` varies per relation — see each relation's API Playground in the Data Hub for its exact schema.
 
@@ -164,7 +166,7 @@ All relation endpoints return the same envelope. The shape of `entity.value` var
 ]
 ```
 
-#### Envelope fields
+**Envelope fields**
 
 | Field                   | Description                                                                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -175,7 +177,7 @@ All relation endpoints return the same envelope. The shape of `entity.value` var
 | `entity.fb_semantic_id` | Stable identifier for the feature instance (typically `feature\|<subtype>\|organization:<id>`).                                |
 | `entity.value`          | The actual payload. Shape depends on the relation; see the per-relation schema in the API Playground.                          |
 
-#### Common payload shapes
+**Common payload shapes**
 
 * **Network** (`3138484719`) — `value.root` + `value.links[]` with `depth`, `relation_id`, `label`, `entity_from`, `entity_to`, `meta`. Walks outward from the queried entity.
 * **Management / Shareholders / UBO** — `value` is an array (or `{current,past}` split) of person/organization references with role + date metadata.
@@ -187,7 +189,7 @@ All relation endpoints return the same envelope. The shape of `entity.value` var
 
 ***
 
-### Tips
+#### Tips
 
 * **Cache by relation × entity.** Each `(relation_id, fb_entity_id)` pair is cacheable on the client. Use the `fb_semantic_id` from the response as a stable cache key.
 * **Pair with Organization Search.** Search first to resolve `fb_entity_id`, then fan out to the relations you need.
