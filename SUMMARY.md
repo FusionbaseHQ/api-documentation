@@ -7,8 +7,8 @@
 
 * [Authentication](api/authentication.md)
 * [Organizations](api/organizations/README.md)
-  * [Search](api/organizations/search.md)
   * [AI Search](api/organizations/ai-search.md)
+  * [Search](api/organizations/search.md)
   * [Entity](api/organizations/entity.md)
   * [Relations](api/organizations/relations.md)
 * [Persons](api/persons/README.md)
